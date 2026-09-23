@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | Two Bob Enterprises",
   },
   description:
-    "Two Bob Enterprises Ltd — electrical, solar, HVAC and security solutions in Westlands, Nairobi. Call +254 795 321 293.",
+    "Two Bob Enterprises Ltd — electrical, solar, HVAC and security solutions in Westlands, Nairobi. Call +254 714 866 809.",
   icons: { icon: "/assets/logo.png" },
 };
 

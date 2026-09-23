@@ -1,6 +1,6 @@
-export const PHONE = "+254 795 321 293";
-export const TEL = "tel:+254795321293";
-export const WHATSAPP = "https://wa.me/254795321293";
+export const PHONE = "+254 714 866 809";
+export const TEL = "tel:+254714866809";
+export const WHATSAPP = "https://wa.me/254714866809";
 export const MAIL = "mailto:info@twobobenterprises.co.ke";
 export const EMAIL = "info@twobobenterprises.co.ke";
 export const WEB = "https://www.twobobenterprises.co.ke";
