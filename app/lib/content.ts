@@ -56,7 +56,7 @@ export const stats = [
   { value: "2015", label: "Founded" },
   { value: "10+", label: "Years in the field" },
   { value: "4", label: "Core trades" },
-  { value: "Westlands", label: "Based in Nairobi" },
+  { value: "200+", label: "Projects delivered" },
 ];
 
 export const certs = [

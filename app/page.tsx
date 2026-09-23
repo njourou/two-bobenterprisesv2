@@ -13,6 +13,14 @@ export default function Home() {
       <HeroSlider />
 
       <section className="stats-bar">
+        <div className="stats-bg" aria-hidden="true">
+          {["/work/work-60.jpg", "/work/work-26.jpg", "/work/work-51.jpg", "/work/work-45.jpg"].map((src) => (
+            <div className="stats-bg-cell" key={src}>
+              <Image src={src} alt="" fill sizes="25vw" />
+            </div>
+          ))}
+        </div>
+        <div className="stats-bg-tint" aria-hidden="true" />
         <div className="container stats-grid">
           {stats.map((s) => (
             <div className="stat reveal" key={s.label}>
