@@ -10,8 +10,8 @@ export default function ContactPage() {
       <section className="page-hero">
         <div className="container reveal">
           <p className="kicker">Contact</p>
-          <h1>Visit us</h1>
-          <p className="section-lead">Westlands office — call or email for quotes and site visits.</p>
+          <h1>Get in touch</h1>
+          <p className="section-lead">Westlands, Nairobi — call or email for quotes and site visits.</p>
         </div>
       </section>
       <section className="section">
@@ -30,8 +30,8 @@ export default function ContactPage() {
               <a href={MAIL}>{EMAIL}</a>
             </p>
             <p className="visit-line">
-              <strong>Hours</strong>
-              <span>Mon–Sat · by appointment</span>
+              <strong>Web</strong>
+              <span>www.twobobenterprises.co.ke</span>
             </p>
             <div className="visit-actions">
               <a className="btn btn-green" href={TEL}>

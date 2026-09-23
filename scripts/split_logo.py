@@ -1,24 +1,36 @@
 from PIL import Image
 
-src = Image.open("public/assets/logo-src.png").convert("RGBA")
-px = src.load()
-w, h = src.size
+im = Image.open("public/assets/logo.png").convert("RGBA")
+w, h = im.size
+# Find gap between chevrons and wordmark
+px = im.load()
+row_counts = []
 for y in range(h):
-    for x in range(w):
-        r, g, b, a = px[x, y]
-        if r > 240 and g > 240 and b > 240:
-            px[x, y] = (0, 0, 0, 0)
-        elif r > 225 and g > 225 and b > 225:
-            avg = (r + g + b) / 3
-            a = max(0, int(255 * (248 - avg) / 23))
-            px[x, y] = (r, g, b, a)
+    c = sum(1 for x in range(w) if px[x, y][3] > 20)
+    row_counts.append(c)
 
-bbox = src.getbbox()
-chev_bottom = 282 + 287
-pad = 8
-mark = src.crop((bbox[0] - pad, bbox[1] - pad, bbox[2] + pad, chev_bottom + pad))
-word = src.crop((bbox[0] - pad, chev_bottom, bbox[2] + pad, bbox[3] + pad))
-word = word.crop(word.getbbox())
+# find largest empty gap in middle third
+best = None
+y = 0
+while y < h:
+    if row_counts[y] < 8:
+        start = y
+        while y < h and row_counts[y] < 8:
+            y += 1
+        gap = (start, y)
+        if best is None or (gap[1] - gap[0]) > (best[1] - best[0]):
+            if start > h * 0.25 and y < h * 0.85:
+                best = gap
+    else:
+        y += 1
+
+split_y = (best[0] + best[1]) // 2 if best else int(h * 0.55)
+print("split_y", split_y, "gap", best)
+
+mark = im.crop((0, 0, w, split_y))
+word = im.crop((0, split_y, w, h))
+mb, wb = mark.getbbox(), word.getbbox()
+mark, word = mark.crop(mb), word.crop(wb)
 
 mw, mh = mark.size
 mp = mark.load()
@@ -39,4 +51,4 @@ green.save("public/assets/logo-chevron-green.png")
 grey.save("public/assets/logo-chevron-grey.png")
 word.save("public/assets/logo-wordmark.png")
 mark.save("public/assets/logo-mark.png")
-print("ok", mark.size, word.size)
+print("mark", mark.size, "word", word.size, "green", green.getbbox(), "grey", grey.getbbox())

@@ -11,8 +11,11 @@ export default function ServicesPage() {
       <section className="page-hero">
         <div className="container reveal">
           <p className="kicker">Services</p>
-          <h1>Six disciplines. One team.</h1>
-          <p className="section-lead">Design, install and maintain the systems that keep your site running.</p>
+          <h1>Our services</h1>
+          <p className="section-lead">
+            Electrical, HVAC, CCTV, solar, UPS and generators for residential, commercial and
+            industrial clients.
+          </p>
         </div>
       </section>
       <section className="section">

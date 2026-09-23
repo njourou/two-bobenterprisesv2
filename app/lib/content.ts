@@ -1,8 +1,10 @@
-export const PHONE = "+254 714 866 809";
-export const TEL = "tel:+254714866809";
+export const PHONE = "+254 795 321 293";
+export const TEL = "tel:+254795321293";
+export const WHATSAPP = "https://wa.me/254795321293";
 export const MAIL = "mailto:info@twobobenterprises.co.ke";
 export const EMAIL = "info@twobobenterprises.co.ke";
-export const ADDRESS = "Kyuna Crescent #30, Westlands, Nairobi, Kenya";
+export const WEB = "https://www.twobobenterprises.co.ke";
+export const ADDRESS = "Westlands, Nairobi, Kenya";
 
 export type ServiceIcon = "bolt" | "sun" | "fan" | "camera" | "battery" | "engine";
 
@@ -14,80 +16,101 @@ export const services: {
 }[] = [
   {
     title: "Electrical Engineering",
-    copy: "Design, install and maintain power systems for homes, commercial and industrial sites.",
+    copy: "Power distribution, wiring, control panels, testing and upgrades for homes, businesses and industry.",
     image: "/work/work-39.jpg",
     icon: "bolt",
   },
   {
     title: "Solar Energy",
-    copy: "Grid-tied and off-grid solar with battery storage to cut costs and keep you online.",
+    copy: "Grid-tied, off-grid and hybrid systems with battery storage, inspection and maintenance.",
     image: "/work/work-60.jpg",
     icon: "sun",
   },
   {
     title: "HVAC Systems",
-    copy: "Heating, ventilation and air conditioning built for comfort and efficiency.",
+    copy: "Air conditioning, ventilation, filtration and energy-efficient climate control — install and service.",
     image: "/work/work-26.jpg",
     icon: "fan",
   },
   {
     title: "CCTV & Security",
-    copy: "Surveillance, access control and monitoring to protect people and property.",
+    copy: "CCTV, access control, alarms and structured cabling with monitoring support.",
     image: "/work/work-51.jpg",
     icon: "camera",
   },
   {
     title: "UPS Installation",
-    copy: "Uninterruptible power for servers, clinics and critical equipment.",
+    copy: "Uninterruptible power for servers, clinics and other critical equipment.",
     image: "/work/work-44.jpg",
     icon: "battery",
   },
   {
     title: "Generator Services",
-    copy: "Supply, install and service generators for reliable backup power.",
+    copy: "Supply, install and service generators for standby power when the grid fails.",
     image: "/work/work-45.jpg",
     icon: "engine",
   },
 ];
 
 export const stats = [
-  { value: "2015", label: "Established" },
-  { value: "7+", label: "Years experience" },
-  { value: "200+", label: "Projects done" },
-  { value: "6", label: "Core services" },
+  { value: "2015", label: "Founded" },
+  { value: "10+", label: "Years in the field" },
+  { value: "4", label: "Core trades" },
+  { value: "Westlands", label: "Based in Nairobi" },
 ];
 
 export const certs = [
   {
     name: "EPRA",
-    detail: "Energy & Petroleum Regulatory Authority",
+    detail: "Electrical and solar work",
     logo: "/assets/certs/epra.png",
   },
   {
     name: "NCA",
-    detail: "National Construction Authority",
+    detail: "Construction works",
     logo: "/assets/certs/nca.png",
   },
   {
     name: "KEBS",
-    detail: "Kenya Bureau of Standards",
+    detail: "Quality requirements",
     logo: "/assets/certs/kebs.png",
   },
   {
     name: "OSHA",
-    detail: "Occupational Safety & Health",
+    detail: "Occupational safety",
     logo: "/assets/certs/osha.png",
   },
   {
     name: "NEMA",
-    detail: "National Environment Management Authority",
+    detail: "Environmental requirements",
     logo: "/assets/certs/nema.png",
   },
   {
     name: "KRA",
-    detail: "Kenya Revenue Authority",
+    detail: "Tax compliance",
     logo: "/assets/certs/kra.png",
   },
+];
+
+export const whyUs = [
+  "Experience across electrical, HVAC, CCTV and solar",
+  "Strong focus on safety and quality",
+  "Solutions shaped around the site and the client",
+  "Clear coordination from planning to handover",
+  "Maintenance and support after installation",
+];
+
+export const clients = [
+  "Government of Kenya",
+  "Kenya Commercial Bank",
+  "East African Breweries",
+  "KenolKobil",
+  "Chuka University",
+  "Laikipia University",
+  "Technical University of Kenya",
+  "Embu University",
+  "Almasi Beverages",
+  "Mount Kenya Bottlers",
 ];
 
 export const gallery = [
@@ -129,22 +152,22 @@ export const gallery = [
 export const projects = [
   {
     title: "Commercial rooftop solar",
-    copy: "Multi-row PV install delivering daytime power for a business site.",
+    copy: "PV install for daytime power on a business site.",
     image: "/work/work-60.jpg",
   },
   {
-    title: "Backup generator install",
+    title: "Backup generator",
     copy: "Outdoor standby generator for reliable site power.",
     image: "/work/work-45.jpg",
   },
   {
-    title: "CCTV monitoring suite",
-    copy: "Multi-camera surveillance with live monitoring display.",
+    title: "CCTV monitoring",
+    copy: "Multi-camera surveillance with live monitoring.",
     image: "/work/work-51.jpg",
   },
   {
-    title: "HVAC systems install",
-    copy: "Heating, ventilation and cooling for commercial comfort.",
+    title: "HVAC systems",
+    copy: "Air conditioning and ventilation for commercial spaces.",
     image: "/work/work-26.jpg",
   },
   {
@@ -154,7 +177,7 @@ export const projects = [
   },
   {
     title: "UPS protection",
-    copy: "APC Smart-UPS for critical equipment uptime.",
+    copy: "Backup power for critical equipment.",
     image: "/work/work-44.jpg",
   },
 ];

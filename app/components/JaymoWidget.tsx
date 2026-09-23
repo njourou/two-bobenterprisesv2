@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
-const WHATSAPP = "https://wa.me/254714866809";
-const TEL = "tel:+254714866809";
+import { TEL, WHATSAPP } from "../lib/content";
 
 export default function JaymoWidget() {
   const [open, setOpen] = useState(false);

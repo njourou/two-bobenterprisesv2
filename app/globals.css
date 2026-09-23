@@ -97,7 +97,7 @@ img {
 .brand-chevrons {
   position: relative;
   width: clamp(52px, 9vw, 78px);
-  aspect-ratio: 569 / 303;
+  aspect-ratio: 420 / 336;
   flex-shrink: 0;
 }
 
@@ -515,10 +515,135 @@ img {
 }
 
 .section-lead {
-  margin: 0.7rem 0 0;
+  margin: 0.85rem 0 0;
   color: var(--muted);
   line-height: 1.55;
   font-weight: 500;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  max-width: 42rem;
+}
+
+.service-body h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--charcoal);
+}
+
+.service-body p {
+  margin: 0.45rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.page-hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4.5vw, 2.85rem);
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.about-copy h2 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+}
+
+.about-copy p {
+  font-size: 1.05rem;
+}
+
+.home-card h2 {
+  margin: 0.35rem 0 0.55rem;
+  font-size: 1.4rem;
+}
+
+.home-card p {
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+  line-height: 1.55;
+  font-size: 1.02rem;
+}
+
+.hero-copy {
+  margin: 1.15rem 0 0;
+  max-width: 40rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.25rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.why-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 860px) {
+  .why-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: start;
+  }
+}
+
+.why-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.why-list li {
+  position: relative;
+  padding: 0.95rem 1.1rem 0.95rem 2.4rem;
+  background: var(--white);
+  border-radius: 14px;
+  border: 1px solid rgba(40, 150, 61, 0.14);
+  box-shadow: var(--shadow);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  line-height: 1.4;
+}
+
+.why-list li::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 1.25rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.client-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+@media (min-width: 800px) {
+  .client-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.client-list li {
+  padding: 0.9rem 1rem;
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid rgba(40, 150, 61, 0.12);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--charcoal);
 }
 
 /* Services — logo-aligned overlays */

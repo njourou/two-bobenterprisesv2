@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ADDRESS, EMAIL, MAIL, PHONE, TEL } from "../lib/content";
 
 export default function SiteFooter() {
   return (
@@ -9,11 +10,11 @@ export default function SiteFooter() {
           <Image
             src="/assets/logo-on-green.png"
             alt="Two Bob Enterprises"
-            width={200}
-            height={72}
+            width={220}
+            height={80}
             className="footer-logo"
           />
-          <p>Electrical, solar, HVAC, CCTV, UPS and generators — Westlands, Nairobi.</p>
+          <p>Electrical, solar, HVAC and security — Westlands, Nairobi.</p>
         </div>
         <div>
           <h4>Explore</h4>
@@ -39,12 +40,12 @@ export default function SiteFooter() {
           <h4>Contact</h4>
           <ul>
             <li>
-              <a href="tel:+254714866809">+254 714 866 809</a>
+              <a href={TEL}>{PHONE}</a>
             </li>
             <li>
-              <a href="mailto:info@twobobenterprises.co.ke">info@twobobenterprises.co.ke</a>
+              <a href={MAIL}>{EMAIL}</a>
             </li>
-            <li>Kyuna Crescent #30, Westlands</li>
+            <li>{ADDRESS}</li>
           </ul>
         </div>
       </div>

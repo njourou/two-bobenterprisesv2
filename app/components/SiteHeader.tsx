@@ -4,9 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import BrandLogo from "./BrandLogo";
-
-const TEL = "tel:+254714866809";
-const PHONE = "+254 714 866 809";
+import { PHONE, TEL } from "../lib/content";
 
 const links = [
   { href: "/services", label: "Services" },

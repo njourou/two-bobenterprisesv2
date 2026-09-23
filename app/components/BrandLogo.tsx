@@ -43,16 +43,16 @@ export default function BrandLogo() {
         <Image
           src="/assets/logo-chevron-green.png"
           alt=""
-          width={569}
-          height={303}
+          width={420}
+          height={336}
           priority
           className="chev chev-green"
         />
         <Image
           src="/assets/logo-chevron-grey.png"
           alt=""
-          width={569}
-          height={303}
+          width={420}
+          height={336}
           priority
           className="chev chev-grey"
         />
@@ -60,8 +60,8 @@ export default function BrandLogo() {
       <Image
         src="/assets/logo-wordmark.png"
         alt="Two Bob Enterprises"
-        width={553}
-        height={136}
+        width={677}
+        height={166}
         priority
         className="brand-wordmark"
       />
