@@ -7,10 +7,10 @@ export default function SiteFooter() {
       <div className="container footer-grid">
         <div className="footer-brand">
           <Image
-            src="/assets/logo.png"
+            src="/assets/logo-on-green.png"
             alt="Two Bob Enterprises"
-            width={180}
-            height={60}
+            width={200}
+            height={72}
             className="footer-logo"
           />
           <p>Electrical, solar, HVAC, CCTV, UPS and generators — Westlands, Nairobi.</p>

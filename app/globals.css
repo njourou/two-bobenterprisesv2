@@ -943,10 +943,11 @@ img {
 
 /* Footer */
 .footer {
-  padding: 2.5rem 0 1.5rem;
-  border-top: 1px solid var(--line);
-  background: var(--white);
+  padding: 2.75rem 0 1.5rem;
   margin-top: 1rem;
+  background: linear-gradient(135deg, #1f7a32 0%, var(--green) 45%, #2ea84a 100%);
+  color: #fff;
+  border-top: none;
 }
 
 .footer-grid {
@@ -961,18 +962,19 @@ img {
 }
 
 .footer-brand p {
-  margin: 0.75rem 0 0;
-  color: var(--muted);
+  margin: 0.85rem 0 0;
+  color: rgba(255, 255, 255, 0.88);
   font-size: 0.9rem;
   line-height: 1.5;
   font-weight: 500;
-  max-width: 28ch;
+  max-width: 30ch;
 }
 
 .footer-logo {
-  height: 56px;
+  height: 72px;
   width: auto;
   object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
 }
 
 .footer h4 {
@@ -980,7 +982,7 @@ img {
   font-size: 0.78rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--lime);
 }
 
 .footer ul {
@@ -994,20 +996,22 @@ img {
 .footer li,
 .footer a {
   font-size: 0.9rem;
-  color: var(--charcoal);
+  color: rgba(255, 255, 255, 0.92);
   font-weight: 600;
 }
 
 .footer a:hover {
-  color: var(--green);
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.copyright {
+.footer .copyright {
   margin-top: 1.5rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
   font-size: 0.78rem;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 /* Jaymo widget — fixed bottom-right */
