@@ -25,22 +25,20 @@ export default function JaymoWidget() {
           <div className="jaymo-panel-head">
             <Image
               src="/assets/jaymo.jpg"
-              alt="Jaymo from Two Bob Enterprises"
-              width={56}
-              height={56}
+              alt="Jaymo"
+              width={52}
+              height={52}
               className="jaymo-avatar"
             />
             <div>
               <strong>Jaymo</strong>
-              <span>Two Bob · usually replies fast</span>
+              <span>Two Bob Enterprises</span>
             </div>
             <button type="button" className="jaymo-close" aria-label="Close" onClick={() => setOpen(false)}>
               ×
             </button>
           </div>
-          <p className="jaymo-bubble">
-            Hi — I&apos;m Jaymo from Two Bob. Need power, solar, HVAC or security? Call or WhatsApp me.
-          </p>
+          <p className="jaymo-bubble">How can I help with your project?</p>
           <div className="jaymo-actions">
             <a className="btn btn-green" href={TEL}>
               Call
@@ -54,14 +52,13 @@ export default function JaymoWidget() {
 
       <button
         type="button"
-        className="jaymo-fab glass"
+        className="jaymo-fab"
         aria-expanded={open}
-        aria-label={open ? "Close Jaymo" : "Chat with Jaymo"}
+        aria-label={open ? "Close chat" : "Chat with Jaymo"}
         onClick={() => setOpen((v) => !v)}
       >
-        <Image src="/assets/jaymo.jpg" alt="" width={64} height={64} className="jaymo-fab-img" />
+        <Image src="/assets/jaymo.jpg" alt="" width={58} height={58} className="jaymo-fab-img" />
         <span className="jaymo-fab-dot" aria-hidden="true" />
-        {!open && <span className="jaymo-fab-label">Jaymo</span>}
       </button>
     </div>
   );

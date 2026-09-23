@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import JaymoWidget from "./components/JaymoWidget";
+import Reveal from "./components/Reveal";
+import SiteFooter from "./components/SiteFooter";
+import SiteHeader from "./components/SiteHeader";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -10,18 +14,25 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Two Bob Enterprises | Electrical, Solar, HVAC & Security — Nairobi",
+  title: {
+    default: "Two Bob Enterprises | Electrical, Solar, HVAC & Security — Nairobi",
+    template: "%s | Two Bob Enterprises",
+  },
   description:
-    "Two Bob Enterprises — electrical, solar, HVAC, CCTV, UPS and generators in Westlands, Nairobi. Call Jaymo on +254 714 866 809.",
+    "Two Bob Enterprises — electrical, solar, HVAC, CCTV, UPS and generators in Westlands, Nairobi.",
   icons: { icon: "/assets/logo.png" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} ${montserrat.className}`}>{children}</body>
+      <body className={`${montserrat.variable} ${montserrat.className}`}>
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
+        <JaymoWidget />
+        <Reveal />
+      </body>
     </html>
   );
 }
