@@ -16,12 +16,52 @@ const MAIL = "mailto:info@twobobenterprises.co.ke";
 const WHATSAPP = "https://wa.me/254714866809";
 
 const services = [
-  { title: "Electrical", image: "/work/work-01.jpg" },
-  { title: "Solar", image: "/work/work-05.jpg" },
-  { title: "HVAC", image: "/work/work-08.jpg" },
-  { title: "CCTV", image: "/work/work-11.jpg" },
-  { title: "UPS", image: "/work/work-14.jpg" },
-  { title: "Generators", image: "/work/work-17.jpg" },
+  {
+    title: "Electrical Engineering",
+    copy: "Design, install and maintain power systems for homes, commercial and industrial sites.",
+    image: "/work/work-01.jpg",
+  },
+  {
+    title: "Solar Energy",
+    copy: "Grid-tied and off-grid solar with battery storage to cut costs and keep you online.",
+    image: "/work/work-05.jpg",
+  },
+  {
+    title: "HVAC Systems",
+    copy: "Heating, ventilation and air conditioning built for comfort and efficiency.",
+    image: "/work/work-08.jpg",
+  },
+  {
+    title: "CCTV & Security",
+    copy: "Surveillance, access control and monitoring to protect people and property.",
+    image: "/work/work-11.jpg",
+  },
+  {
+    title: "UPS Installation",
+    copy: "Uninterruptible power for servers, clinics and critical equipment.",
+    image: "/work/work-14.jpg",
+  },
+  {
+    title: "Generator Services",
+    copy: "Supply, install and service generators for reliable backup power.",
+    image: "/work/work-17.jpg",
+  },
+];
+
+const stats = [
+  { value: "2015", label: "Established" },
+  { value: "7+", label: "Years experience" },
+  { value: "200+", label: "Projects done" },
+  { value: "6", label: "Core services" },
+];
+
+const certs = [
+  { name: "EPRA", detail: "Energy & Petroleum Regulatory Authority" },
+  { name: "NCA", detail: "National Construction Authority" },
+  { name: "KEBS", detail: "Kenya Bureau of Standards" },
+  { name: "OSHA", detail: "Occupational Safety & Health" },
+  { name: "NEMA", detail: "Environmental Management" },
+  { name: "KRA", detail: "Tax compliant" },
 ];
 
 const gallery = [
@@ -44,7 +84,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -58,7 +98,7 @@ export default function Home() {
           if (e.isIntersecting) e.target.classList.add("in");
         });
       },
-      { threshold: 0.14, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -36px 0px" },
     );
     nodes.forEach((n) => io.observe(n));
     return () => io.disconnect();
@@ -70,14 +110,22 @@ export default function Home() {
 
   return (
     <>
-      <header className={`site-header glass ${scrolled ? "is-scrolled" : ""}`} id="top">
+      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`} id="top">
         <div className="container nav">
           <a className="brand" href="#top" aria-label="Two Bob Enterprises home">
-            <Image src="/assets/logo.jpg" alt="Two Bob Enterprises" width={120} height={40} priority />
+            <Image
+              src="/assets/logo.png"
+              alt="Two Bob Enterprises"
+              width={220}
+              height={64}
+              priority
+              className="brand-logo"
+            />
           </a>
 
           <nav className="desktop-nav" aria-label="Main">
             <a href="#services">Services</a>
+            <a href="#about">About</a>
             <a href="#work">Work</a>
             <a href="#visit">Visit</a>
           </nav>
@@ -101,6 +149,7 @@ export default function Home() {
         <div className={`mobile-nav ${menuOpen ? "open" : ""}`}>
           {[
             ["services", "Services"],
+            ["about", "About"],
             ["work", "Work"],
             ["visit", "Visit"],
           ].map(([id, label]) => (
@@ -117,37 +166,47 @@ export default function Home() {
       <main>
         <section className="hero">
           <div className="hero-media" aria-hidden="true">
-            <Image
-              src="/work/work-07.jpg"
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="hero-img"
-            />
+            <Image src="/work/work-07.jpg" alt="" fill priority sizes="100vw" className="hero-img" />
           </div>
           <div className="hero-overlay" />
           <div className="container hero-content">
-            <p className="brand-hero reveal">Two Bob Enterprises</p>
+            <p className="eyebrow reveal">Established 2015 · Westlands, Nairobi</p>
             <h1 className="reveal d1">
-              Power done
+              Powering Kenya with
               <br />
-              <em>right.</em>
+              <em>exceptional engineering</em>
             </h1>
             <p className="hero-copy reveal d2">
-              Electrical, solar, HVAC and security — Westlands, Nairobi.
+              Two Bob Enterprises delivers electrical, HVAC, CCTV, solar, UPS and generator
+              solutions — built on technical excellence and clear safety standards.
             </p>
             <div className="hero-actions reveal d3">
               <a className="btn btn-green" href={TEL}>
                 Call us
               </a>
               <a className="btn btn-glass" href={WHATSAPP} target="_blank" rel="noreferrer">
-                WhatsApp
+                WhatsApp Jaymo
               </a>
-              <a className="text-link" href="#work">
-                View work ↓
+              <a className="text-link" href="#services">
+                Our services ↓
               </a>
             </div>
+            <div className="hero-trust reveal d3">
+              <span>Certified · EPRA, NCA, KEBS</span>
+              <span>Energy-efficient systems</span>
+              <span>Commercial & residential</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="stats-bar">
+          <div className="container stats-grid">
+            {stats.map((s) => (
+              <div className="stat reveal" key={s.label}>
+                <strong>{s.value}</strong>
+                <span>{s.label}</span>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -155,17 +214,67 @@ export default function Home() {
           <div className="container">
             <div className="section-head reveal">
               <p className="kicker">Services</p>
-              <h2>What we install.</h2>
+              <h2>Six disciplines. One team.</h2>
+              <p className="section-lead">
+                From design to install and maintenance — we cover the systems that keep your site
+                running.
+              </p>
             </div>
             <div className="service-grid">
               {services.map((s) => (
-                <article className="service-tile glass reveal" key={s.title}>
+                <article className="service-tile reveal" key={s.title}>
                   <div className="service-photo">
-                    <Image src={s.image} alt="" fill sizes="(max-width:700px) 50vw, 200px" />
+                    <Image src={s.image} alt="" fill sizes="(max-width:700px) 50vw, 280px" />
+                    <div className="service-overlay" />
                   </div>
-                  <h3>{s.title}</h3>
+                  <div className="service-body">
+                    <h3>{s.title}</h3>
+                    <p>{s.copy}</p>
+                  </div>
                 </article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section about" id="about">
+          <div className="container about-grid">
+            <div className="about-copy reveal">
+              <p className="kicker">About</p>
+              <h2>Engineered excellence since 2015.</h2>
+              <p>
+                Two Bob Enterprises Ltd is a Nairobi-based provider of electrical, HVAC, CCTV,
+                solar, UPS and generator solutions. We serve commercial, industrial and residential
+                clients with certified, safety-led installations.
+              </p>
+              <p>
+                Our technicians bring project discipline to every job — quality workmanship,
+                compliance and systems that last.
+              </p>
+              <div className="mission glass">
+                <strong>Our mission</strong>
+                <p>
+                  Deliver innovative, sustainable engineering that meets client needs while holding
+                  the highest standards of quality and safety.
+                </p>
+              </div>
+            </div>
+            <div className="about-side reveal">
+              <div className="about-photo">
+                <Image src="/work/work-14.jpg" alt="Two Bob site work" fill sizes="(max-width:900px) 100vw, 480px" />
+                <div className="about-photo-overlay" />
+              </div>
+              <div className="certs glass">
+                <h3>Certifications & compliance</h3>
+                <ul>
+                  {certs.map((c) => (
+                    <li key={c.name}>
+                      <span className="cert-tag">{c.name}</span>
+                      <span>{c.detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </section>
@@ -174,13 +283,15 @@ export default function Home() {
           <div className="container">
             <div className="section-head reveal">
               <p className="kicker">Work</p>
-              <h2>On site.</h2>
+              <h2>On site across Kenya.</h2>
+              <p className="section-lead">A look at installations and upgrades we deliver every day.</p>
             </div>
           </div>
           <div className="gallery-rail" tabIndex={0} aria-label="Project gallery">
             {gallery.map((src, i) => (
-              <figure className="gallery-item reveal" key={src} style={{ animationDelay: `${(i % 6) * 0.05}s` }}>
+              <figure className="gallery-item reveal" key={src}>
                 <Image src={src} alt={`Two Bob project ${i + 1}`} width={420} height={320} sizes="420px" />
+                <div className="gallery-overlay" />
               </figure>
             ))}
           </div>
@@ -190,10 +301,13 @@ export default function Home() {
           <div className="container visit-grid">
             <div className="visit-copy glass reveal">
               <p className="kicker">Visit</p>
-              <h2>Find us.</h2>
+              <h2>Talk to the team.</h2>
+              <p className="visit-intro">
+                Based in Westlands. Call or WhatsApp Jaymo for quotes, site visits and support.
+              </p>
               <p className="visit-line">
                 <strong>Address</strong>
-                <span>Kyuna Crescent #30, Westlands, Nairobi</span>
+                <span>Kyuna Crescent #30, Westlands, Nairobi, Kenya</span>
               </p>
               <p className="visit-line">
                 <strong>Phone</strong>
@@ -203,12 +317,19 @@ export default function Home() {
                 <strong>Email</strong>
                 <a href={MAIL}>info@twobobenterprises.co.ke</a>
               </p>
+              <p className="visit-line">
+                <strong>Hours</strong>
+                <span>Mon–Sat · site visits by appointment</span>
+              </p>
               <div className="visit-actions">
                 <a className="btn btn-green" href={TEL}>
                   Call
                 </a>
                 <a className="btn btn-dark" href={WHATSAPP} target="_blank" rel="noreferrer">
                   WhatsApp Jaymo
+                </a>
+                <a className="btn btn-outline" href={MAIL}>
+                  Email
                 </a>
               </div>
             </div>
@@ -221,11 +342,13 @@ export default function Home() {
 
       <footer className="footer">
         <div className="container footer-row">
-          <Image src="/assets/logo.jpg" alt="Two Bob Enterprises" width={110} height={36} />
-          <p>Electrical · Solar · HVAC · Security</p>
+          <Image src="/assets/logo.png" alt="Two Bob Enterprises" width={140} height={48} className="footer-logo" />
+          <p>Electrical · Solar · HVAC · CCTV · UPS · Generators</p>
           <a href="#top">Top ↑</a>
         </div>
-        <div className="container copyright">© {new Date().getFullYear()} Two Bob Enterprises Ltd.</div>
+        <div className="container copyright">
+          © {new Date().getFullYear()} Two Bob Enterprises Ltd. · Westlands, Nairobi
+        </div>
       </footer>
 
       <JaymoWidget />

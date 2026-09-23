@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Two Bob Enterprises | Electrical, Solar, HVAC & Security — Nairobi",
   description:
     "Two Bob Enterprises — electrical, solar, HVAC, CCTV, UPS and generators in Westlands, Nairobi. Call Jaymo on +254 714 866 809.",
-  icons: { icon: "/assets/logo.jpg" },
+  icons: { icon: "/assets/logo.png" },
 };
 
 export default function RootLayout({
