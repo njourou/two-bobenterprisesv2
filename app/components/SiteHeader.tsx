@@ -11,6 +11,7 @@ const links = [
   { href: "/about", label: "About" },
   { href: "/work", label: "Work" },
   { href: "/projects", label: "Projects" },
+  { href: "/news", label: "News" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -20,7 +21,7 @@ export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -37,28 +38,34 @@ export default function SiteHeader() {
           <BrandLogo />
         </Link>
 
-        <nav className="desktop-nav" aria-label="Main">
-          {links.map((l) => (
-            <Link key={l.href} href={l.href} className={pathname === l.href ? "is-active" : undefined}>
-              {l.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="nav-right">
+          <nav className="desktop-nav" aria-label="Main">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={pathname === l.href || pathname.startsWith(`${l.href}/`) ? "is-active" : undefined}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
 
-        <a className="nav-cta" href={TEL}>
-          Call {PHONE}
-        </a>
+          <a className="nav-cta" href={TEL}>
+            Call {PHONE}
+          </a>
 
-        <button
-          type="button"
-          className="menu"
-          aria-label="Menu"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((o) => !o)}
-        >
-          <span />
-          <span />
-        </button>
+          <button
+            type="button"
+            className="menu"
+            aria-label="Menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
 
       <div className={`mobile-nav ${menuOpen ? "open" : ""}`}>

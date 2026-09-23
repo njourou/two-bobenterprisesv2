@@ -1,39 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import CertBadges from "./components/CertBadges";
+import HeroSlider from "./components/HeroSlider";
 import ServiceIcon from "./components/ServiceIcon";
-import { services, stats, TEL, whyUs } from "./lib/content";
+import { news, services, stats, whyUs } from "./lib/content";
 
 export default function Home() {
+  const [featured, ...rest] = news;
+
   return (
     <>
-      <section className="hero">
-        <div className="hero-media" aria-hidden="true">
-          <Image src="/work/work-60.jpg" alt="" fill priority sizes="100vw" className="hero-img" />
-        </div>
-        <div className="hero-overlay" />
-        <div className="container hero-content">
-          <p className="eyebrow reveal">Company profile 2026 · Westlands, Nairobi</p>
-          <h1 className="reveal d1">
-            Power, comfort and security
-            <br />
-            <em>for the spaces that matter</em>
-          </h1>
-          <p className="hero-copy reveal d2">
-            Electrical, solar, HVAC and security for homes, businesses and institutions. We plan,
-            install and maintain building systems with a focus on safety, quality and practical
-            results.
-          </p>
-          <div className="hero-actions reveal d3">
-            <a className="btn btn-green" href={TEL}>
-              Call us
-            </a>
-            <Link className="btn btn-glass" href="/services">
-              Our services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HeroSlider />
 
       <section className="stats-bar">
         <div className="container stats-grid">
@@ -78,6 +55,52 @@ export default function Home() {
             <Link className="btn btn-outline" href="/work">
               See our work
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section news-section">
+        <div className="container">
+          <div className="section-head reveal section-head-row">
+            <div>
+              <p className="kicker">News</p>
+              <h2>From the field</h2>
+              <p className="section-lead">Practical notes on power, HVAC, solar and security.</p>
+            </div>
+            <Link className="btn btn-outline" href="/news">
+              All news
+            </Link>
+          </div>
+
+          <div className="news-home reveal">
+            <Link href={`/news/${featured.slug}`} className="news-feature">
+              <div className="news-feature-media">
+                <Image src={featured.image} alt={featured.title} fill sizes="(max-width:900px) 100vw, 60vw" />
+              </div>
+              <div className="news-feature-body">
+                <span className="news-meta">
+                  {featured.category} · {featured.date}
+                </span>
+                <h3>{featured.title}</h3>
+                <p>{featured.excerpt}</p>
+              </div>
+            </Link>
+
+            <div className="news-side">
+              {rest.map((item) => (
+                <Link href={`/news/${item.slug}`} className="news-row" key={item.slug}>
+                  <div className="news-row-media">
+                    <Image src={item.image} alt="" fill sizes="120px" />
+                  </div>
+                  <div>
+                    <span className="news-meta">
+                      {item.category} · {item.date}
+                    </span>
+                    <h3>{item.title}</h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>

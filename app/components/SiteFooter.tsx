@@ -32,6 +32,9 @@ export default function SiteFooter() {
               <Link href="/projects">Projects</Link>
             </li>
             <li>
+              <Link href="/news">News</Link>
+            </li>
+            <li>
               <Link href="/contact">Contact</Link>
             </li>
           </ul>

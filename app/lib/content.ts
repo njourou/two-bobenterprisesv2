@@ -181,3 +181,51 @@ export const projects = [
     image: "/work/work-44.jpg",
   },
 ];
+
+export const news = [
+  {
+    slug: "solar-for-commercial-rooftops",
+    title: "What to check before a commercial rooftop solar install",
+    excerpt:
+      "Roof structure, daytime load and inverter placement decide whether a system pays back cleanly.",
+    date: "2026-03-12",
+    category: "Solar",
+    image: "/work/work-60.jpg",
+  },
+  {
+    slug: "keeping-hvac-efficient",
+    title: "Keeping HVAC efficient through Nairobi’s warm season",
+    excerpt:
+      "Filter changes, refrigerant checks and correct sizing keep indoor comfort steady without waste.",
+    date: "2026-02-28",
+    category: "HVAC",
+    image: "/work/work-26.jpg",
+  },
+  {
+    slug: "cctv-that-covers-the-site",
+    title: "CCTV layouts that actually cover the site",
+    excerpt:
+      "Camera height, lighting and NVR capacity matter more than packing in extra channels.",
+    date: "2026-02-10",
+    category: "Security",
+    image: "/work/work-51.jpg",
+  },
+  {
+    slug: "generator-readiness",
+    title: "Generator readiness when the grid is unreliable",
+    excerpt:
+      "Fuel, ATS testing and clear handover keep standby power useful the moment you need it.",
+    date: "2026-01-22",
+    category: "Power",
+    image: "/work/work-45.jpg",
+  },
+  {
+    slug: "ups-for-critical-rooms",
+    title: "UPS choices for server rooms and clinics",
+    excerpt:
+      "Runtime, load type and battery health decide whether critical rooms stay online.",
+    date: "2026-01-08",
+    category: "UPS",
+    image: "/work/work-44.jpg",
+  },
+];
