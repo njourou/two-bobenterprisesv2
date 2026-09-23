@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import CertBadges from "./components/CertBadges";
 import ServiceIcon from "./components/ServiceIcon";
 import { services, stats, TEL } from "./lib/content";
 
@@ -77,6 +78,19 @@ export default function Home() {
             <Link className="btn btn-outline" href="/work">
               See our work
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section certs-section">
+        <div className="container">
+          <div className="section-head reveal">
+            <p className="kicker">Compliance</p>
+            <h2>Certifications & compliance</h2>
+            <p className="section-lead">Registered and aligned with Kenyan regulatory standards.</p>
+          </div>
+          <div className="reveal">
+            <CertBadges />
           </div>
         </div>
       </section>
