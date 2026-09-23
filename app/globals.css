@@ -157,11 +157,51 @@ img {
   animation: wordEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.95s forwards;
 }
 
-.brand-logo.is-settled .chev-green,
-.brand-logo.is-settled .chev-grey,
-.brand-logo.is-settled .brand-wordmark {
-  opacity: 1;
-  transform: none;
+.brand-logo.is-waiting {
+  opacity: 0;
+}
+
+/* Full-page logo intro on load */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 40%, rgba(124, 207, 34, 0.16), transparent 60%),
+    #fff;
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+
+.page-loader.is-hiding {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page-loader-mark {
+  height: auto !important;
+  gap: 0.45rem;
+}
+
+.page-loader-mark .brand-chevrons {
+  width: clamp(120px, 28vw, 200px) !important;
+}
+
+.page-loader-mark .brand-wordmark {
+  height: clamp(36px, 7vw, 52px) !important;
+  max-width: min(280px, 70vw) !important;
+}
+
+body.is-booting {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader {
+    display: none;
+  }
 }
 
 .brand-chevrons.is-flipping {

@@ -3,13 +3,23 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+/** Header mark — settles after page loader; then random flips. */
 export default function BrandLogo() {
-  const [phase, setPhase] = useState<"intro" | "settled">("intro");
+  const [phase, setPhase] = useState<"waiting" | "settled">("waiting");
   const [flipping, setFlipping] = useState(false);
 
   useEffect(() => {
-    const settle = window.setTimeout(() => setPhase("settled"), 1600);
-    return () => window.clearTimeout(settle);
+    const start = () => setPhase("settled");
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      start();
+      return;
+    }
+
+    // Sync with page loader (~2.5s), or settle sooner if loader already gone
+    const delay = document.body.classList.contains("is-booting") ? 2600 : 400;
+    const t = window.setTimeout(start, delay);
+    return () => window.clearTimeout(t);
   }, []);
 
   useEffect(() => {
@@ -20,14 +30,14 @@ export default function BrandLogo() {
     let coolTimer = 0;
 
     const schedule = () => {
-      const delay = 3500 + Math.random() * 7500;
+      const wait = 3500 + Math.random() * 7500;
       flipTimer = window.setTimeout(() => {
         setFlipping(true);
         coolTimer = window.setTimeout(() => {
           setFlipping(false);
           schedule();
         }, 900);
-      }, delay);
+      }, wait);
     };
 
     schedule();
@@ -38,7 +48,7 @@ export default function BrandLogo() {
   }, [phase]);
 
   return (
-    <span className={`brand-logo ${phase === "settled" ? "is-settled" : "is-intro"}`}>
+    <span className={`brand-logo is-settled ${phase === "waiting" ? "is-waiting" : ""}`}>
       <span className={`brand-chevrons ${flipping ? "is-flipping" : ""}`} aria-hidden="true">
         <Image
           src="/assets/logo-chevron-green.png"

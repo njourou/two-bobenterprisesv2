@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import JaymoWidget from "./components/JaymoWidget";
+import PageLoader from "./components/PageLoader";
 import Reveal from "./components/Reveal";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${montserrat.variable} ${montserrat.className}`}>
+        <PageLoader />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
