@@ -58,12 +58,36 @@ export const stats = [
 ];
 
 export const certs = [
-  { name: "EPRA", detail: "Energy & Petroleum Regulatory Authority" },
-  { name: "NCA", detail: "National Construction Authority" },
-  { name: "KEBS", detail: "Kenya Bureau of Standards" },
-  { name: "OSHA", detail: "Occupational Safety & Health" },
-  { name: "NEMA", detail: "Environmental Management" },
-  { name: "KRA", detail: "Tax compliant" },
+  {
+    name: "EPRA",
+    detail: "Energy & Petroleum Regulatory Authority",
+    logo: "/assets/certs/epra.png",
+  },
+  {
+    name: "NCA",
+    detail: "National Construction Authority",
+    logo: "/assets/certs/nca.png",
+  },
+  {
+    name: "KEBS",
+    detail: "Kenya Bureau of Standards",
+    logo: "/assets/certs/kebs.png",
+  },
+  {
+    name: "OSHA",
+    detail: "Occupational Safety & Health",
+    logo: "/assets/certs/osha.png",
+  },
+  {
+    name: "NEMA",
+    detail: "National Environment Management Authority",
+    logo: "/assets/certs/nema.png",
+  },
+  {
+    name: "KRA",
+    detail: "Kenya Revenue Authority",
+    logo: "/assets/certs/kra.png",
+  },
 ];
 
 export const gallery = [
