@@ -74,44 +74,129 @@ img {
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
   height: 100%;
   flex-shrink: 0;
 }
 
-.brand-mark-wrap {
-  display: grid;
-  place-items: center;
-  width: calc(var(--header-h) - 18px);
-  height: calc(var(--header-h) - 18px);
+.brand-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  height: calc(var(--header-h) - 10px);
+}
+
+.brand-chevrons {
+  position: relative;
+  width: clamp(52px, 9vw, 78px);
+  aspect-ratio: 569 / 303;
   flex-shrink: 0;
 }
 
-.brand-mark {
+.brand-chevrons .chev {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  will-change: transform;
-  transform-origin: 50% 50%;
 }
 
 .brand-wordmark {
-  height: calc(var(--header-h) * 0.42);
+  height: clamp(22px, 3.6vw, 30px);
   width: auto;
-  max-width: min(200px, 42vw);
+  max-width: min(170px, 38vw);
   object-fit: contain;
 }
 
+/* Intro: green first, then grey, then wordmark */
+.brand-logo.is-intro .chev-green {
+  animation: chevEnterGreen 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.brand-logo.is-intro .chev-grey {
+  opacity: 0;
+  animation: chevEnterGrey 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+}
+
+.brand-logo.is-intro .brand-wordmark {
+  opacity: 0;
+  animation: wordEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.95s forwards;
+}
+
+.brand-logo.is-settled .chev-green,
+.brand-logo.is-settled .chev-grey,
+.brand-logo.is-settled .brand-wordmark {
+  opacity: 1;
+  transform: none;
+}
+
+.brand-chevrons.is-flipping {
+  animation: chevFlip 0.85s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+@keyframes chevEnterGreen {
+  from {
+    opacity: 0;
+    transform: translateX(48px) rotate(-28deg) scale(0.55);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes chevEnterGrey {
+  from {
+    opacity: 0;
+    transform: translateX(-48px) rotate(28deg) scale(0.55);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wordEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes chevFlip {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (min-width: 860px) {
+  .brand-chevrons {
+    width: 82px;
+  }
   .brand-wordmark {
-    height: calc(var(--header-h) * 0.48);
-    max-width: 260px;
+    height: 32px;
+    max-width: 200px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .brand-mark {
-    transform: none !important;
+  .brand-logo.is-intro .chev-green,
+  .brand-logo.is-intro .chev-grey,
+  .brand-logo.is-intro .brand-wordmark {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .brand-chevrons.is-flipping {
+    animation: none;
   }
 }
 

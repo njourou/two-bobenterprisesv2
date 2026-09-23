@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import BrandLogo from "./components/BrandLogo";
 import JaymoWidget from "./components/JaymoWidget";
 
 const SiteMap = dynamic(() => import("./components/SiteMap"), {
@@ -82,26 +83,12 @@ const gallery = [
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [markRot, setMarkRot] = useState(0);
 
   useEffect(() => {
-    let raf = 0;
-    const update = () => {
-      const y = window.scrollY;
-      setScrolled(y > 12);
-      // One full 360° per viewport of scroll
-      setMarkRot((y / Math.max(window.innerHeight, 1)) * 360);
-    };
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(update);
-    };
-    update();
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
@@ -127,25 +114,7 @@ export default function Home() {
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`} id="top">
         <div className="container nav">
           <a className="brand" href="#top" aria-label="Two Bob Enterprises home">
-            <span className="brand-mark-wrap" aria-hidden="true">
-              <Image
-                src="/assets/logo-mark.png"
-                alt=""
-                width={96}
-                height={96}
-                priority
-                className="brand-mark"
-                style={{ transform: `rotate(${markRot}deg)` }}
-              />
-            </span>
-            <Image
-              src="/assets/logo-wordmark.png"
-              alt="Two Bob Enterprises"
-              width={220}
-              height={56}
-              priority
-              className="brand-wordmark"
-            />
+            <BrandLogo />
           </a>
 
           <nav className="desktop-nav" aria-label="Main">
