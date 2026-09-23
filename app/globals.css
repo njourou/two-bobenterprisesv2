@@ -11,7 +11,7 @@
   --glass-dark: rgba(40, 150, 61, 0.18);
   --shadow: 0 18px 50px rgba(80, 76, 75, 0.12);
   --radius: 18px;
-  --header-h: 76px;
+  --header-h: 104px;
   --font: "Montserrat", system-ui, sans-serif;
 }
 
@@ -79,9 +79,16 @@ img {
 }
 
 .brand-logo {
-  height: calc(var(--header-h) - 12px);
+  height: calc(var(--header-h) - 8px);
   width: auto;
+  max-width: min(280px, 52vw);
   object-fit: contain;
+}
+
+@media (min-width: 860px) {
+  .brand-logo {
+    max-width: 320px;
+  }
 }
 
 .desktop-nav {
@@ -711,7 +718,7 @@ img {
 }
 
 .footer-logo {
-  height: 44px;
+  height: 72px;
   width: auto;
   object-fit: contain;
 }

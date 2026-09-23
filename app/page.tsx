@@ -116,8 +116,8 @@ export default function Home() {
             <Image
               src="/assets/logo.png"
               alt="Two Bob Enterprises"
-              width={220}
-              height={64}
+              width={320}
+              height={96}
               priority
               className="brand-logo"
             />
@@ -342,7 +342,7 @@ export default function Home() {
 
       <footer className="footer">
         <div className="container footer-row">
-          <Image src="/assets/logo.png" alt="Two Bob Enterprises" width={140} height={48} className="footer-logo" />
+          <Image src="/assets/logo.png" alt="Two Bob Enterprises" width={220} height={72} className="footer-logo" />
           <p>Electrical · Solar · HVAC · CCTV · UPS · Generators</p>
           <a href="#top">Top ↑</a>
         </div>
