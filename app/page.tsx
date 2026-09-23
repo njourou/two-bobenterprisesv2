@@ -1,68 +1,68 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import JaymoWidget from "./components/JaymoWidget";
+
+const SiteMap = dynamic(() => import("./components/SiteMap"), {
+  ssr: false,
+  loading: () => <div className="tb-map tb-map-skeleton" aria-hidden="true" />,
+});
+
+const PHONE = "+254 714 866 809";
+const TEL = "tel:+254714866809";
+const MAIL = "mailto:info@twobobenterprises.co.ke";
+const WHATSAPP = "https://wa.me/254714866809";
 
 const services = [
-  {
-    title: "Electrical",
-    copy: "Electrical installations, upgrades and maintenance for residential and commercial spaces.",
-    icon: "⚡",
-    image:
-      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=900&q=72"
-  },
-  {
-    title: "Solar Energy",
-    copy: "Solar power systems designed around your energy needs.",
-    icon: "☀",
-    image:
-      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=900&q=72"
-  },
-  {
-    title: "HVAC",
-    copy: "Air conditioning and HVAC systems for comfortable, efficient spaces.",
-    icon: "◌",
-    image:
-      "https://images.unsplash.com/photo-1631545806609-4d6f2e2c5c0b?auto=format&fit=crop&w=900&q=72"
-  },
-  {
-    title: "CCTV and Security",
-    copy: "CCTV and security systems for better visibility and protection.",
-    icon: "◉",
-    image:
-      "https://images.unsplash.com/photo-1558008258-3256797b43f3?auto=format&fit=crop&w=900&q=72"
-  },
-  {
-    title: "UPS Systems",
-    copy: "UPS systems that keep essential equipment powered when the mains goes down.",
-    icon: "▣",
-    image:
-      "https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&w=900&q=72"
-  },
-  {
-    title: "Generators",
-    copy: "Generator installation, backup power and maintenance support.",
-    icon: "⚙",
-    image:
-      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=72"
-  }
+  { title: "Electrical", image: "/work/work-01.jpg" },
+  { title: "Solar", image: "/work/work-05.jpg" },
+  { title: "HVAC", image: "/work/work-08.jpg" },
+  { title: "CCTV", image: "/work/work-11.jpg" },
+  { title: "UPS", image: "/work/work-14.jpg" },
+  { title: "Generators", image: "/work/work-17.jpg" },
+];
+
+const gallery = [
+  "/work/work-02.jpg",
+  "/work/work-03.jpg",
+  "/work/work-04.jpg",
+  "/work/work-06.jpg",
+  "/work/work-07.jpg",
+  "/work/work-09.jpg",
+  "/work/work-10.jpg",
+  "/work/work-12.jpg",
+  "/work/work-13.jpg",
+  "/work/work-15.jpg",
+  "/work/work-16.jpg",
+  "/work/work-18.jpg",
 ];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [note, setNote] = useState("");
+  const [scrolled, setScrolled] = useState(false);
 
-  function submitForm(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const service = String(form.get("service") || "");
-    const subject = encodeURIComponent(`Project enquiry: ${service}`);
-    const body = encodeURIComponent(
-      `Name: ${form.get("name")}\nPhone: ${form.get("phone")}\nEmail: ${form.get("email")}\nService: ${service}\n\n${form.get("message") || ""}`
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const nodes = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("in");
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -40px 0px" },
     );
-
-    setNote("Opening your email app...");
-    window.location.href = `mailto:info@twobobenterprises.co.ke?subject=${subject}&body=${body}`;
-  }
+    nodes.forEach((n) => io.observe(n));
+    return () => io.disconnect();
+  }, []);
 
   function closeMenu() {
     setMenuOpen(false);
@@ -70,28 +70,28 @@ export default function Home() {
 
   return (
     <>
-      <header className="site-header" id="top">
+      <header className={`site-header glass ${scrolled ? "is-scrolled" : ""}`} id="top">
         <div className="container nav">
           <a className="brand" href="#top" aria-label="Two Bob Enterprises home">
-            <img src="/assets/logo.webp" alt="Two Bob Enterprises" />
+            <Image src="/assets/logo.jpg" alt="Two Bob Enterprises" width={120} height={40} priority />
           </a>
 
-          <nav className="desktop-nav" aria-label="Main navigation">
+          <nav className="desktop-nav" aria-label="Main">
             <a href="#services">Services</a>
-            <a href="#projects">Projects</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="#work">Work</a>
+            <a href="#visit">Visit</a>
           </nav>
 
-          <a className="nav-cta" href="#contact">
-            Get a quote <span>→</span>
+          <a className="nav-cta" href={TEL}>
+            Call {PHONE}
           </a>
 
           <button
+            type="button"
             className="menu"
-            aria-label="Open menu"
+            aria-label="Menu"
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
+            onClick={() => setMenuOpen((o) => !o)}
           >
             <span />
             <span />
@@ -99,207 +99,136 @@ export default function Home() {
         </div>
 
         <div className={`mobile-nav ${menuOpen ? "open" : ""}`}>
-          {["services", "projects", "about", "contact"].map((item) => (
-            <a key={item} href={`#${item}`} onClick={closeMenu}>
-              {item[0].toUpperCase() + item.slice(1)}
+          {[
+            ["services", "Services"],
+            ["work", "Work"],
+            ["visit", "Visit"],
+          ].map(([id, label]) => (
+            <a key={id} href={`#${id}`} onClick={closeMenu}>
+              {label}
             </a>
           ))}
+          <a href={TEL} onClick={closeMenu}>
+            Call {PHONE}
+          </a>
         </div>
       </header>
 
       <main>
         <section className="hero">
-          <div className="hero-media" aria-hidden="true" />
+          <div className="hero-media" aria-hidden="true">
+            <Image
+              src="/work/work-07.jpg"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="hero-img"
+            />
+          </div>
           <div className="hero-overlay" />
           <div className="container hero-content">
-            <p className="eyebrow reveal">TWO BOB ENTERPRISES</p>
-            <h1 className="reveal delay-1">
-              Powering spaces
+            <p className="brand-hero reveal">Two Bob Enterprises</p>
+            <h1 className="reveal d1">
+              Power done
               <br />
-              <span>that matter.</span>
+              <em>right.</em>
             </h1>
-            <p className="hero-copy reveal delay-2">
-              Electrical, solar, HVAC and security solutions for homes and
-              businesses.
+            <p className="hero-copy reveal d2">
+              Electrical, solar, HVAC and security — Westlands, Nairobi.
             </p>
-            <div className="hero-actions reveal delay-3">
-              <a className="btn btn-green" href="#contact">
-                Start a project <span>→</span>
+            <div className="hero-actions reveal d3">
+              <a className="btn btn-green" href={TEL}>
+                Call us
               </a>
-              <a className="text-link" href="#services">
-                View services <span>↓</span>
+              <a className="btn btn-glass" href={WHATSAPP} target="_blank" rel="noreferrer">
+                WhatsApp
+              </a>
+              <a className="text-link" href="#work">
+                View work ↓
               </a>
             </div>
-          </div>
-          <div className="hero-line" aria-hidden="true" />
-        </section>
-
-        <section className="intro section">
-          <div className="container intro-grid">
-            <div>
-              <p className="section-kicker">WHAT WE DO</p>
-              <h2>Practical engineering. Built to work.</h2>
-            </div>
-            <p className="intro-copy">
-              We design, install and maintain the systems that keep spaces
-              running.
-            </p>
           </div>
         </section>
 
         <section className="section services" id="services">
           <div className="container">
-            <div className="section-head">
-              <div>
-                <p className="section-kicker">OUR SERVICES</p>
-                <h2>Solutions for the way you work.</h2>
-              </div>
-              <a className="text-link dark-link" href="#contact">
-                Start a conversation <span>→</span>
-              </a>
+            <div className="section-head reveal">
+              <p className="kicker">Services</p>
+              <h2>What we install.</h2>
             </div>
-
             <div className="service-grid">
-              {services.map((service) => (
-                <article className="service-card" key={service.title}>
-                  <div
-                    className="service-image"
-                    style={{ backgroundImage: `url("${service.image}")` }}
-                  />
-                  <div className="service-body">
-                    <div className="icon">{service.icon}</div>
-                    <h3>{service.title}</h3>
-                    <p>{service.copy}</p>
-                    <a href="#contact">
-                      Explore <span>→</span>
-                    </a>
+              {services.map((s) => (
+                <article className="service-tile glass reveal" key={s.title}>
+                  <div className="service-photo">
+                    <Image src={s.image} alt="" fill sizes="(max-width:700px) 50vw, 200px" />
                   </div>
+                  <h3>{s.title}</h3>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="project-feature section" id="projects">
-          <div className="container feature-grid">
-            <div className="feature-image" />
-            <div className="feature-copy">
-              <p className="section-kicker">ONE TEAM</p>
-              <h2>Power, cooling and security. One team.</h2>
-              <p>
-                From power and cooling to security and backup, we bring the
-                work together.
-              </p>
-              <a className="btn btn-dark" href="#contact">
-                Plan your project <span>→</span>
-              </a>
+        <section className="section work" id="work">
+          <div className="container">
+            <div className="section-head reveal">
+              <p className="kicker">Work</p>
+              <h2>On site.</h2>
             </div>
+          </div>
+          <div className="gallery-rail" tabIndex={0} aria-label="Project gallery">
+            {gallery.map((src, i) => (
+              <figure className="gallery-item reveal" key={src} style={{ animationDelay: `${(i % 6) * 0.05}s` }}>
+                <Image src={src} alt={`Two Bob project ${i + 1}`} width={420} height={320} sizes="420px" />
+              </figure>
+            ))}
           </div>
         </section>
 
-        <section className="stats section" id="about">
-          <div className="container stats-grid">
-            <div>
-              <strong>2015</strong>
-              <span>Since</span>
-            </div>
-            <div>
-              <strong>6</strong>
-              <span>Service areas</span>
-            </div>
-            <div>
-              <strong>Kenya</strong>
-              <span>+254 795 321293</span>
-            </div>
-            <div>
-              <strong>360°</strong>
-              <span>Project support</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="contact section" id="contact">
-          <div className="container contact-grid">
-            <div className="contact-copy">
-              <p className="section-kicker">PROJECT ENQUIRY</p>
-              <h2>Let’s talk about your project.</h2>
-              <p>Tell us what you need and our team can discuss the next step.</p>
-
-              <div className="contact-detail">
-                <span>Email</span>
-                <a href="mailto:info@twobobenterprises.co.ke">
-                  info@twobobenterprises.co.ke
-                </a>
-              </div>
-
-              <div className="contact-detail">
-                <span>Phone</span>
-                <a href="tel:+254795321293">+254 795 321293</a>
-              </div>
-
-              <div className="contact-detail">
-                <span>Careers</span>
-                <a href="mailto:careers@twobobenterprises.co.ke">
-                  careers@twobobenterprises.co.ke
-                </a>
-              </div>
-
-              <div className="contact-detail">
-                <span>Location</span>
-                <strong>Nairobi, Kenya</strong>
-              </div>
-            </div>
-
-            <form className="project-form" onSubmit={submitForm}>
-              <label>
-                Name
-                <input name="name" type="text" autoComplete="name" required />
-              </label>
-              <label>
-                Phone
-                <input name="phone" type="tel" autoComplete="tel" required />
-              </label>
-              <label>
-                Email
-                <input name="email" type="email" autoComplete="email" required />
-              </label>
-              <label>
-                Service
-                <select name="service" defaultValue="Electrical">
-                  {services.map((service) => (
-                    <option key={service.title}>{service.title}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Project details
-                <textarea
-                  name="message"
-                  rows={4}
-                  placeholder="Tell us briefly what you need."
-                />
-              </label>
-              <button className="btn btn-green form-submit" type="submit">
-                Send enquiry <span>→</span>
-              </button>
-              <p className="form-note" aria-live="polite">
-                {note}
+        <section className="section visit" id="visit">
+          <div className="container visit-grid">
+            <div className="visit-copy glass reveal">
+              <p className="kicker">Visit</p>
+              <h2>Find us.</h2>
+              <p className="visit-line">
+                <strong>Address</strong>
+                <span>Kyuna Crescent #30, Westlands, Nairobi</span>
               </p>
-            </form>
+              <p className="visit-line">
+                <strong>Phone</strong>
+                <a href={TEL}>{PHONE}</a>
+              </p>
+              <p className="visit-line">
+                <strong>Email</strong>
+                <a href={MAIL}>info@twobobenterprises.co.ke</a>
+              </p>
+              <div className="visit-actions">
+                <a className="btn btn-green" href={TEL}>
+                  Call
+                </a>
+                <a className="btn btn-dark" href={WHATSAPP} target="_blank" rel="noreferrer">
+                  WhatsApp Jaymo
+                </a>
+              </div>
+            </div>
+            <div className="map-frame glass reveal">
+              <SiteMap />
+            </div>
           </div>
         </section>
       </main>
 
       <footer className="footer">
-        <div className="container footer-grid">
-          <img src="/assets/logo.webp" alt="Two Bob Enterprises" />
-          <p>Electrical. Solar. HVAC. Security.</p>
-          <a href="#top">Back to top ↑</a>
+        <div className="container footer-row">
+          <Image src="/assets/logo.jpg" alt="Two Bob Enterprises" width={110} height={36} />
+          <p>Electrical · Solar · HVAC · Security</p>
+          <a href="#top">Top ↑</a>
         </div>
-        <div className="container copyright">
-          © 2026 Two Bob Enterprises Ltd.
-        </div>
+        <div className="container copyright">© {new Date().getFullYear()} Two Bob Enterprises Ltd.</div>
       </footer>
+
+      <JaymoWidget />
     </>
   );
 }

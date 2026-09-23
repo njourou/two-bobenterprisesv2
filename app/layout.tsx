@@ -5,24 +5,23 @@ import "./globals.css";
 const montserrat = Montserrat({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-montserrat"
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
-  title: "Two Bob Enterprises | Engineering Solutions",
+  title: "Two Bob Enterprises | Electrical, Solar, HVAC & Security — Nairobi",
   description:
-    "Two Bob Enterprises provides electrical, solar, HVAC, CCTV, UPS and generator solutions in Kenya.",
-  icons: {
-    icon: "/assets/logo.webp"
-  }
+    "Two Bob Enterprises — electrical, solar, HVAC, CCTV, UPS and generators in Westlands, Nairobi. Call Jaymo on +254 714 866 809.",
+  icons: { icon: "/assets/logo.jpg" },
 };
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={montserrat.variable}>{children}</body>
+      <body className={`${montserrat.variable} ${montserrat.className}`}>{children}</body>
     </html>
   );
 }
