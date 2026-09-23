@@ -82,12 +82,26 @@ const gallery = [
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [markRot, setMarkRot] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
+    let raf = 0;
+    const update = () => {
+      const y = window.scrollY;
+      setScrolled(y > 12);
+      // One full 360° per viewport of scroll
+      setMarkRot((y / Math.max(window.innerHeight, 1)) * 360);
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -113,13 +127,24 @@ export default function Home() {
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`} id="top">
         <div className="container nav">
           <a className="brand" href="#top" aria-label="Two Bob Enterprises home">
+            <span className="brand-mark-wrap" aria-hidden="true">
+              <Image
+                src="/assets/logo-mark.png"
+                alt=""
+                width={96}
+                height={96}
+                priority
+                className="brand-mark"
+                style={{ transform: `rotate(${markRot}deg)` }}
+              />
+            </span>
             <Image
-              src="/assets/logo.png"
+              src="/assets/logo-wordmark.png"
               alt="Two Bob Enterprises"
-              width={320}
-              height={96}
+              width={220}
+              height={56}
               priority
-              className="brand-logo"
+              className="brand-wordmark"
             />
           </a>
 
